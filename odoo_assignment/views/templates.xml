@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="product_price_with_discount" inherit_id="website_sale.product">
+        <!-- Modify the product price section -->
+        <xpath expr="//div[@id='product_details']//div[contains(@class, 'js_product js_main_product')]" position="inside">
+            <div>
+                <!-- Add discount handling -->
+                <t t-if="product.discount_percentage > 0">
+                    <span class="original_price" style="text-decoration: line-through; color: grey;">
+                        <t t-esc="product.list_price" />
+                    </span>
+                    <span class="discounted_price" style="color: red; font-weight: bold;">
+                        <t t-esc="product.discounted_price" />
+                    </span>
+                </t>
+                <t t-else="">
+                    <span class="regular_price">
+                        <t t-esc="product.list_price" />
+                    </span>
+                </t>
+            </div>
+        </xpath>
+    </template>
+</odoo>
